@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>My Ministry</title>
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -22,9 +22,11 @@
   <link href="assets/css/custom.css" rel="stylesheet">
   <link href="assets/css/socials.css" rel="stylesheet">
   <link href="assets/css/partner.css" rel="stylesheet">
-</head>
 
-<style>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600;700;800&family=Poppins:wght@300;400;600;700&family=Nunito:wght@300;400;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+
+  <style>
   :root{
     --nav-dark-1: #0e1724;
     --nav-dark-2: #1a2f4d;
@@ -127,6 +129,7 @@
 
   /* SOCIAL CARDS */
   .social-card{ display:block; background:#fff; border-radius:14px; padding:22px 18px; text-decoration:none; color:inherit; text-align:center; box-shadow:0 10px 30px rgba(0,0,0,0.06); transition:transform .28s, box-shadow .28s; height:220px; position:relative; overflow:hidden; }
+  .social-icon-container{ width:60px; height:60px; margin:0 auto 10px; display:flex; align-items:center; justify-content:center; border-radius:50%; font-size:1.6rem; color:currentColor; position:relative; }
   /* --- Social platform colors (add after your social-card styles) --- */
 
 /* make icon inherit color */
@@ -217,7 +220,6 @@
   background: #FF0000; color: #fff; border: none;
 }
 
-  .social-icon-container{ width:60px; height:60px; margin:0 auto 10px; display:flex; align-items:center; justify-content:center; border-radius:50%; font-size:1.6rem; color:currentColor; position:relative; }
   .icon-pulse{ position:absolute; inset:0; border-radius:50%; opacity:.12; background:currentColor; animation:pulse 2s infinite; }
   @keyframes pulse{ 0%{ transform:scale(.92); opacity:.12 } 50%{ transform:scale(1.08); opacity:.08 } 100%{ transform:scale(.92); opacity:.12 } }
 
@@ -589,7 +591,7 @@
             <div class="testimony-content p-3">
               <div class="d-flex align-items-center mb-2">
                 <div class="avatar-placeholder rounded-circle d-flex align-items-center justify-content-center me-2" style="width:40px; height:40px; background: rgba(86,171,47,0.2); color:#56ab2f; font-weight:bold; font-size:.75rem;">EJ</div>
-                <div><h6 class="mb-0 fw-bold" style="color:#fff; font-family:'Oswald', sans-serif;"> Emmanuel James</h6><small style="color:rgba(255,255,255,0.6);">Accra, Ghana</small></div>
+                <div><h6 class="mb-0 fw-bold" style="color:#fff; font-family:'Oswald',sans-serif;">Emmanuel James</h6><small style="color:rgba(255,255,255,0.6);">Accra, Ghana</small></div>
               </div>
               <p class="mb-0" style="font-family:'Poppins',sans-serif; font-size:.9rem; line-height:1.5; color:rgba(255,255,255,0.9);">"Attending a revival meeting restored my hope. I experienced God's healing power."</p>
             </div>
@@ -680,175 +682,10 @@
     </div>
   </footer>
 
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-  <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    // Copyright year
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Typewriter (kept, non-critical)
-    (function typewriter(){
-      const el = document.querySelector('.typed-text');
-      if(!el) return;
-      const texts = ["On the frontline of global evangelism", "Reaching nations with the Gospel", "Training believers worldwide", "Expanding God's Kingdom together"];
-      let i=0, j=0, deleting=false;
-      function tick(){
-        const current = texts[i];
-        el.textContent = deleting ? current.slice(0, j--) : current.slice(0, j++);
-        if(!deleting && j===current.length+1){ deleting=true; setTimeout(tick,2000); return; }
-        if(deleting && j===0){ deleting=false; i=(i+1)%texts.length; setTimeout(tick,500); return; }
-        setTimeout(tick, deleting ? 30 : 50);
-      }
-      setTimeout(tick,800);
-    })();
-
-    // COUNTERS — restored and animate when in view
-    (function counters(){
-      const counters = document.querySelectorAll('.counter');
-      if(!counters.length) return;
-      const animate = (el) => {
-        const target = +el.dataset.target || 0;
-        const suffix = el.dataset.suffix || '';
-        let current = 0;
-        const step = Math.max(1, Math.round(target / 600));
-        const run = () => {
-          current += step;
-          if(current < target){
-            el.textContent = current.toLocaleString() + suffix;
-            requestAnimationFrame(run);
-          } else {
-            el.textContent = target.toLocaleString() + suffix;
-          }
-        };
-        run();
-      };
-      const observer = new IntersectionObserver(entries => {
-        entries.forEach(e => {
-          if(e.isIntersecting){ animate(e.target); observer.unobserve(e.target); }
-        });
-      }, { threshold: 0.5 });
-      counters.forEach(c => observer.observe(c));
-    })();
-
-    // Parallax minor effect for partner hero
-    (function parallaxHero(){
-      const hero = document.querySelector('.partner-hero');
-      if(!hero) return;
-      window.addEventListener('scroll', () => {
-        const scrolled = window.pageYOffset;
-        hero.style.backgroundPosition = `center ${Math.max(-120, -scrolled * 0.12)}px`;
-      });
-    })();
-
-    // Draggable scroll for events-row (mouse + touch)
-    (function dragScroll(){
-      const slider = document.getElementById('eventsRow');
-      if(!slider) return;
-      let isDown=false, startX, scrollLeft;
-      slider.addEventListener('mousedown', e => { isDown=true; slider.classList.add('active'); startX = e.pageX - slider.offsetLeft; scrollLeft = slider.scrollLeft; });
-      slider.addEventListener('mouseleave', ()=>{ isDown=false; slider.classList.remove('active'); });
-      slider.addEventListener('mouseup', ()=>{ isDown=false; slider.classList.remove('active'); });
-      slider.addEventListener('mousemove', e => {
-        if(!isDown) return;
-        e.preventDefault();
-        const x = e.pageX - slider.offsetLeft;
-        const walk = (x - startX) * 1.6;
-        slider.scrollLeft = scrollLeft - walk;
-      });
-      // touch support
-      let touchStartX=0, touchScrollLeft=0;
-      slider.addEventListener('touchstart', e => { touchStartX = e.touches[0].pageX; touchScrollLeft = slider.scrollLeft; }, {passive:true});
-      slider.addEventListener('touchmove', e => {
-        const x = e.touches[0].pageX;
-        const walk = (x - touchStartX) * 1.4;
-        slider.scrollLeft = touchScrollLeft - walk;
-      }, {passive:true});
-      // arrows
-      const leftBtn = document.querySelector('.left-arrow');
-      const rightBtn = document.querySelector('.right-arrow');
-      if(leftBtn) leftBtn.addEventListener('click', ()=> slider.scrollBy({ left: -400, behavior: 'smooth' }));
-      if(rightBtn) rightBtn.addEventListener('click', ()=> slider.scrollBy({ left: 400, behavior: 'smooth' }));
-    })();
-
-    // Navbar shrink on scroll
-    (function navShrink(){
-      const nav = document.querySelector('.mega-navbar');
-      if(!nav) return;
-      function check(){ if(window.scrollY>40) nav.classList.add('scrolled'); else nav.classList.remove('scrolled'); }
-      check();
-      window.addEventListener('scroll', check);
-    })();
-
-    // Basic visual ripple animations for CTA buttons (non-critical)
-    (function ripple(){
-      document.querySelectorAll('.animated-button').forEach(btn=>{
-        btn.addEventListener('mouseenter', (e)=>{
-          const rect = btn.getBoundingClientRect();
-          const x = e.clientX - rect.left;
-          const y = e.clientY - rect.top;
-          const ripple = document.createElement('span');
-          ripple.style.position='absolute';
-          ripple.style.left = `${x}px`; ripple.style.top = `${y}px`;
-          ripple.style.width='80px'; ripple.style.height='80px';
-          ripple.style.background='rgba(255,255,255,0.24)';
-          ripple.style.borderRadius='50%'; ripple.style.transform='translate(-50%,-50%)';
-          ripple.style.pointerEvents='none'; ripple.style.opacity='1';
-          ripple.style.transition='opacity .6s, transform .6s';
-          btn.appendChild(ripple);
-          setTimeout(()=>{ ripple.style.opacity='0'; ripple.style.transform='translate(-50%,-50%) scale(2)'; }, 10);
-          setTimeout(()=> ripple.remove(), 700);
-        });
-      });
-    })();
-
-    // Newsletter form basic validation (client only)
-    (function newsletterForm(){
-      const form = document.getElementById('newsletterForm');
-      if(!form) return;
-      form.addEventListener('submit', function(e){
-        e.preventDefault();
-        const email = form.querySelector('input[type="email"]');
-        if(!email.value || !/^\S+@\S+\.\S+$/.test(email.value)){
-          email.focus();
-          email.classList.add('is-invalid');
-          setTimeout(()=> email.classList.remove('is-invalid'), 2500);
-          return;
-        }
-        const submitBtn = form.querySelector('button[type="submit"]');
-        submitBtn.disabled = true;
-        submitBtn.textContent = 'Subscribing...';
-        setTimeout(()=> {
-          submitBtn.disabled = false;
-          submitBtn.innerHTML = '<i class="bi bi-send-fill me-2"></i> Subscribe to Blessings';
-          alert('Thanks — you are subscribed (demo). Connect this to your mail provider to complete process.');
-          form.reset();
-        }, 1200);
-      });
-    })();
-  });
-  </script>
-
-
-  <!-- Footer -->
-  <footer class="bg-dark text-white py-4 text-center">
-    <p>© 2025 Mega Harvest Global Mission. All rights reserved.</p>
-  </footer>
-
-   <!-- Vendor JS Files -->
-  <script src="<?= $server_name ?>/assets/vendor/apexcharts/apexcharts.min.js"></script>
-  <script src="<?= $server_name ?>/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="<?= $server_name ?>/assets/vendor/chart.js/chart.umd.js"></script>
-  <script src="<?= $server_name ?>/assets/vendor/echarts/echarts.min.js"></script>
-  <script src="<?= $server_name ?>/assets/vendor/quill/quill.js"></script>
-  <script src="<?= $server_name ?>/assets/vendor/simple-datatables/simple-datatables.js"></script>
-  <script src="<?= $server_name ?>/assets/vendor/tinymce/tinymce.min.js"></script>
-  <script src="<?= $server_name ?>/assets/vendor/php-email-form/validate.js"></script>
-
-  <!-- Template Main JS File -->
-  <script src="<?= $server_name ?>/assets/js/main.js"></script>
+    <script src="assets/js/custom.js"></script>
 
 </body>
 </html>
-
