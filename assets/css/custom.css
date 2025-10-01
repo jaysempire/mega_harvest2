@@ -25,6 +25,46 @@ h1,h2,h3,h4,h5,h6 { font-family: "Oswald", sans-serif; }
   padding: 0.7rem 0;
   transition: all .25s ease;
 }
+/* Evangelists name badge (bottom-right of hero) */
+.evangelists-badge {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600;
+  font-size: clamp(0.95rem, 1.6vw, 1.6rem); /* responsive */
+  line-height: 1.05;
+  color: #fff;
+  background: rgba(0,0,0,0.5);
+  padding: 8px 14px;
+  border-radius: 8px;
+  display: inline-block;
+  text-align: right;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+  letter-spacing: 0.2px;
+  z-index: 5; /* keep it above hero elements */
+}
+
+/* small tweak for the secondary line ("Evangelists") */
+.evangelists-badge .role {
+  display:block;
+  font-family: 'Poppins', sans-serif;
+  font-weight:500;
+  font-size: 0.65em;
+  color: rgba(255,255,255,0.85);
+  text-transform: none;
+  margin-top: 0.18rem;
+  letter-spacing: 0.5px;
+}
+
+/* Slight position tweak on very small screens so it doesn't crowd the content */
+@media (max-width: 576px) {
+  .evangelists-badge {
+    font-size: 1rem;
+    padding: 6px 10px;
+    border-radius: 6px;
+    right: 0.5rem !important;
+    bottom: 0.5rem !important;
+  }
+}
+
 .mega-navbar.scrolled{ background: rgba(14,23,36,0.95) !important; padding:0.45rem 0; box-shadow:0 6px 22px rgba(0,0,0,0.35); }
 .brand-text{ color: var(--gold); letter-spacing:1.6px; font-weight:700; }
 .brand-subtitle{ font-size:0.75rem; color:rgba(255,255,255,0.75); font-family: "Poppins",sans-serif; letter-spacing:1.6px; text-transform:uppercase; }
