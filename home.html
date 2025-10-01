@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Ministry</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
+
+  <link href="assets/css/style.css" rel="stylesheet">
+  <link href="assets/css/custom.css" rel="stylesheet">
+  <link href="assets/css/socials.css" rel="stylesheet">
+  <link href="assets/css/partner.css" rel="stylesheet">
+</head>
+
+<style>
+  :root{
+    --nav-dark-1: #0e1724;
+    --nav-dark-2: #1a2f4d;
+    --gold: #d4af37;
+    --gold-dark: #b8941f;
+    --accent-green: #56ab2f;
+    --bg-light: #f7f7f6;
+    --white: #ffffff;
+    --muted-white: rgba(255,255,255,0.85);
+  }
+
+  html,body{height:100%;}
+
+  body { font-family: "Poppins", sans-serif; color:#222; background:#fff; }
+  h1,h2,h3,h4,h5,h6 { font-family: "Oswald", sans-serif; margin-bottom:.5rem; }
+
+  /* NAVBAR */
+  .mega-navbar{
+    background: linear-gradient(135deg, var(--nav-dark-2) 0%, var(--nav-dark-1) 100%) !important;
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid rgba(212,175,55,0.12);
+    padding: 0.7rem 0;
+    transition: all .25s ease;
+    z-index: 1050;
+  }
+  .mega-navbar.scrolled{ background: rgba(14,23,36,0.95) !important; padding:0.45rem 0; box-shadow:0 6px 22px rgba(0,0,0,0.35); }
+  .brand-text{ color: var(--gold); letter-spacing:1.6px; font-weight:700; font-size:1.1rem; }
+  .brand-subtitle{ font-size:0.75rem; color:rgba(255,255,255,0.75); font-family: "Poppins",sans-serif; letter-spacing:1.6px; text-transform:uppercase; }
+  .navbar-nav .nav-link{ color:rgba(255,255,255,0.95) !important; font-weight:500; margin:0 0.35rem; padding:0.45rem 0.85rem !important; border-radius:6px; position:relative; }
+  .navbar-nav .nav-link:hover{ color:var(--gold) !important; background: rgba(212,175,55,0.06); transform:translateY(-1px); }
+  .navbar-nav .nav-link::after{ content:''; position:absolute; bottom:0; left:50%; width:0; height:2px; background:var(--gold); transform:translateX(-50%); transition:all .25s ease; }
+  .navbar-nav .nav-link:hover::after{ width:70%; }
+  .give-btn{ background: linear-gradient(135deg,var(--gold) 0%, var(--gold-dark) 100%) !important; color:#111 !important; border-radius:25px !important; padding:.45rem 1.4rem !important; box-shadow:0 6px 18px rgba(212,175,55,0.22) !important; font-weight:600 !important; border:none !important; }
+
+  /* HERO */
+  .hero-section{
+    position:relative;
+    overflow:hidden;
+    min-height:88vh; /* tall hero */
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#fff;
+    background-position:center center;
+    background-size:cover;
+  }
+
+  /* fallback background applied to header - so when video not available you still have image */
+  .hero-section { background-image: url('images/fallback.jpg'); }
+
+  .hero-video{
+    position:absolute;
+    top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:0;
+  }
+
+  .hero-overlay{ position:absolute; inset:0; background: rgba(6,8,12,0.45); z-index:1; }
+
+  .hero-content { position:relative; z-index:2; padding:2.75rem 0; text-align:center; }
+  .hero-content h1{ font-family:'Oswald',sans-serif; font-weight:800; letter-spacing:1px; font-size:clamp(2rem,6vw,3.4rem); color:#fff; }
+  .hero-content p.lead{ color:var(--muted-white); font-weight:600; }
+
+  /* SOULS SECTION */
+  .soul-section{ min-height:70vh; overflow:hidden; }
+  .row-full-height{ height:100%; min-height:70vh; display:flex; flex-wrap:wrap; }
+  .left-column{ display:flex; flex-direction:column; justify-content:center; align-items:center; padding:2rem; background:#faf9f6; text-align:center; }
+  .right-column{ position:relative; height:100%; min-height:50vh; }
+  .soul-image{ width:100%; height:100%; object-fit:cover; object-position: top center; display:block; } /* <= keep faces visible (top) */
+  .soul-heading{ font-family:'Oswald',sans-serif; font-weight:800; font-size:clamp(1.8rem,4.2vw,4.5rem); text-transform:uppercase; line-height:0.95; margin-bottom:1rem; letter-spacing:1px; text-align:center; }
+  .souls-accent{ color:var(--gold); text-shadow:2px 2px 6px rgba(0,0,0,0.08); }
+
+  .soul-links{ margin-top:1rem; max-width:460px; width:100%; }
+  .soul-links li{ list-style:none; border-top:1px solid rgba(0,0,0,0.12); padding:12px 0; }
+  .soul-links a{ display:flex; align-items:center; justify-content:space-between; color:#111; font-weight:600; text-decoration:none; padding-right:8px; transition:all .22s ease; }
+  .soul-links a .arrow{ transition:transform .22s ease; }
+  .soul-links a:hover .arrow{ transform:translateX(6px); color:var(--gold); }
+
+  /* PODCAST IMAGE */
+  .podcast-img{ max-width:720px; width:100%; height:auto; border-radius:8px; }
+  @media (max-width:576px){
+    .podcast-img{ max-width:320px; }
+  }
+
+  /* EVENTS */
+  .events-section{ background:#fafafa; padding:2.4rem 0; }
+  .events-row{ display:flex; gap:1rem; padding-bottom:1rem; overflow-x:auto; scroll-behavior:smooth; cursor:grab; user-select:none; -webkit-overflow-scrolling:touch; }
+  .events-row:active{ cursor:grabbing; }
+  .events-row::-webkit-scrollbar{ display:none; }
+  .event-card{ flex:0 0 auto; width:clamp(260px,30vw,380px); border-radius:12px; background:#fff; padding:1rem; box-shadow:0 6px 18px rgba(0,0,0,0.06); text-align:left; }
+  .event-card img{ width:100%; height:180px; object-fit:cover; border-radius:8px; }
+
+  /* PARTNER HERO (counters restored) */
+  .partner-hero{ color:#fff; padding:2.5rem 0; background-size:cover; background-position:center; position:relative; }
+  .partner-hero .badge{ background:rgba(212,175,55,0.08); color:var(--gold); border:1px solid rgba(212,175,55,0.12); }
+  .stat-number{ font-family:'Oswald',sans-serif; color:var(--gold); font-size:clamp(1.25rem,4vw,2rem); font-weight:700; }
+  .stat-label{ color:rgba(255,255,255,0.85); font-family:'Poppins',sans-serif; }
+
+  /* TESTIMONIES */
+  .testimony-card{ background:rgba(255,255,255,0.04); border-radius:10px; border:1px solid rgba(86,171,47,0.12); padding:1rem; transition:transform .22s ease, box-shadow .22s ease; }
+  .testimony-card:hover{ transform:translateY(-6px); box-shadow:0 10px 30px rgba(0,0,0,0.15); }
+
+  /* SOCIAL CARDS */
+  .social-card{ display:block; background:#fff; border-radius:14px; padding:22px 18px; text-decoration:none; color:inherit; text-align:center; box-shadow:0 10px 30px rgba(0,0,0,0.06); transition:transform .28s, box-shadow .28s; height:220px; position:relative; overflow:hidden; }
+  /* --- Social platform colors (add after your social-card styles) --- */
+
+/* make icon inherit color */
+.social-icon-container i { color: inherit; }
+
+/* FACEBOOK */
+.facebook-card {
+  color: #3b5998; /* brand blue for text/icon */
+  border: 1px solid rgba(59,89,152,0.08);
+  background: linear-gradient(0deg, rgba(59,89,152,0.03), rgba(255,255,255,0));
+}
+.facebook-card .social-icon-container {
+  background: rgba(59,89,152,0.08);
+  color: #3b5998;
+}
+.facebook-card .icon-pulse { background: rgba(59,89,152,0.14); }
+.facebook-card .social-platform,
+.facebook-card .social-followers,
+.facebook-card .social-cta { color: #17345a; }
+
+/* INSTAGRAM - colorful gradient and white text/icons */
+.instagram-card {
+  color: #fff; /* default text color */
+  border: 1px solid rgba(0,0,0,0.06);
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  box-shadow: 0 10px 30px rgba(204,35,116,0.08);
+}
+.instagram-card .social-icon-container {
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+}
+.instagram-card .icon-pulse { background: rgba(255,255,255,0.12); }
+.instagram-card .social-platform,
+.instagram-card .social-followers,
+.instagram-card .social-cta { color: #fff; }
+
+/* TWITTER */
+.twitter-card {
+  color: #1da1f2;
+  border: 1px solid rgba(29,161,242,0.08);
+  background: linear-gradient(0deg, rgba(29,161,242,0.03), rgba(255,255,255,0));
+}
+.twitter-card .social-icon-container {
+  background: rgba(29,161,242,0.08);
+  color: #1da1f2;
+}
+.twitter-card .icon-pulse { background: rgba(29,161,242,0.14); }
+.twitter-card .social-platform,
+.twitter-card .social-followers,
+.twitter-card .social-cta { color: #0f6fb0; }
+
+/* TIKTOK */
+.tiktok-card {
+  color: #000;
+  border: 1px solid rgba(0,0,0,0.06);
+  /* subtle dark background with a neon-ish accent */
+  background: linear-gradient(180deg, rgba(0,0,0,0.02), rgba(0,0,0,0.04));
+}
+.tiktok-card .social-icon-container {
+  background: linear-gradient(45deg, rgba(0,0,0,0.12), rgba(0,0,0,0.06));
+  color: #000;
+}
+/* create a subtle multi-color pulse to hint TikTok branding */
+.tiktok-card .icon-pulse {
+  background: radial-gradient(circle at 30% 30%, rgba(255,0,60,0.12), transparent 15%),
+              radial-gradient(circle at 70% 70%, rgba(45,245,254,0.08), transparent 20%);
+}
+
+/* Tweak text color inside tiktok card to keep contrast */
+.tiktok-card .social-platform,
+.tiktok-card .social-followers,
+.tiktok-card .social-cta { color: #111; }
+
+/* Accessibility / hover polish for all cards */
+.facebook-card:hover,
+.instagram-card:hover,
+.twitter-card:hover,
+.tiktok-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+}
+
+/* If you use spotify or youtube buttons elsewhere, restore them similarly */
+.spotify-btn, .social-btn-spotify {
+  background: #1DB954; color: #fff; border: none;
+}
+.youtube-btn, .social-btn-youtube {
+  background: #FF0000; color: #fff; border: none;
+}
+
+  .social-icon-container{ width:60px; height:60px; margin:0 auto 10px; display:flex; align-items:center; justify-content:center; border-radius:50%; font-size:1.6rem; color:currentColor; position:relative; }
+  .icon-pulse{ position:absolute; inset:0; border-radius:50%; opacity:.12; background:currentColor; animation:pulse 2s infinite; }
+  @keyframes pulse{ 0%{ transform:scale(.92); opacity:.12 } 50%{ transform:scale(1.08); opacity:.08 } 100%{ transform:scale(.92); opacity:.12 } }
+
+  /* Responsive tweaks */
+  @media (max-width:767.98px){
+    .left-column, .right-column{ min-height:50vh; height:50vh; }
+    .navbar-nav{ text-align:center; padding:1rem 0; }
+    .podcast-img{ max-width:320px; }
+  }
+
+  /* small safety */
+  img.img-fluid{ max-width:100%; height:auto; }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top mega-navbar" role="navigation" aria-label="Main navigation">
+    <div class="container">
+      <a class="navbar-brand d-flex flex-column" href="index.html" aria-label="Mega Harvest Global Mission">
+        <span class="brand-text">MEGA HARVEST</span>
+        <small class="brand-subtitle">Global Mission</small>
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="media.html">Media</a></li>
+          <li class="nav-item"><a class="nav-link" href="events.html">Events</a></li>
+          <li class="nav-item"><a class="btn give-btn ms-lg-2" href="give.html">Give</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO: fallback background + video absolute -->
+  <header class="hero-section" style="background-image:url('images/fallback.jpg');">
+    <!-- Video background (cover) -->
+    <video class="hero-video" autoplay muted loop playsinline aria-hidden="true">
+      <source src="assets/img/crowd.mp4" type="video/mp4">
+      <!-- fallback text -->
+    </video>
+
+    <div class="hero-overlay" aria-hidden="true"></div>
+
+    <div class="container hero-content">
+      <h1 class="display-4 fw-bold">Reaching Souls for Christ</h1>
+      <p class="lead mb-3">Mega Harvest Global Mission</p>
+      <a href="media.html" class="btn btn-warning btn-lg text-dark">Watch Sermons</a>
+    </div>
+
+    <div class="position-absolute end-0 bottom-0 p-3" style="z-index:3;">
+      <p class="mb-0 text-white text-end small" style="background: rgba(0,0,0,0.45); padding:8px 12px; border-radius:6px; font-family:'Playfair Display', serif; font-size:1rem;">
+        Evangelist Joseph Achanya &amp; Mariah Achanya
+      </p>
+    </div>
+  </header>
+
+  <!-- SOULS -->
+  <section class="soul-section">
+    <div class="container-fluid">
+      <div class="row g-0 align-items-stretch row-full-height">
+        <div class="col-12 col-md-6 left-column px-4">
+          <h2 class="soul-heading">
+            IT'S<br>ALL<br>ABOUT<br><span class="souls-accent">SOULS!</span>
+          </h2>
+
+          <ul class="list-unstyled soul-links d-none d-md-block">
+            <li><a href="#">Invitation to Preach <span class="arrow">→</span></a></li>
+            <li><a href="#">Submit a Prayer Request <span class="arrow">→</span></a></li>
+            <li><a href="#">View Our Upcoming Events <span class="arrow">→</span></a></li>
+            <li><a href="#">Our Publications <span class="arrow">→</span></a></li>
+            <li><a href="#">Become a Partner <span class="arrow">→</span></a></li>
+          </ul>
+
+          <ul class="list-unstyled soul-links d-md-none">
+            <li><a href="#">Invitation to Preach <span class="arrow">→</span></a></li>
+            <li><a href="#">View Our Upcoming Events <span class="arrow">→</span></a></li>
+          </ul>
+        </div>
+
+        <div class="col-12 col-md-6 right-column p-0">
+          <!-- object-position: top center so faces aren't cut -->
+          <img src="assets/img/couple.jpeg" alt="Ministry couple" class="soul-image w-100 h-100" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PODCAST -->
+  <section class="podcast-section py-5 text-center">
+    <div class="container">
+      <h2 class="podcast-heading mb-4">Listen to Our Podcast</h2>
+
+      <a href="https://open.spotify.com/show/4QxJ03d3Ppy9EBT5jxOAOO?si=kXvHNkbQTMy5vj8IMCWLqQ" target="_blank" rel="noopener">
+        <img src="assets/img/podcast.jpeg" alt="Mega Harvest Podcast" class="podcast-img img-fluid rounded shadow-sm">
+      </a>
+
+      <div class="mt-3">
+        <a href="https://open.spotify.com/show/4QxJ03d3Ppy9EBT5jxOAOO?si=kXvHNkbQTMy5vj8IMCWLqQ" target="_blank" class="btn btn-success btn-lg">
+          <i class="bi bi-spotify me-2"></i> Listen on Spotify
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- EVENTS (draggable) -->
+  <section class="py-5 events-section">
+    <div class="container">
+      <h2 class="text-center mb-4 fw-bold">Upcoming Events</h2>
+
+      <div class="events-wrapper position-relative">
+        <button class="btn btn-light position-absolute top-50 start-0 translate-middle-y d-none d-md-inline scroll-btn left-arrow" aria-label="Scroll left" type="button">‹</button>
+        <button class="btn btn-light position-absolute top-50 end-0 translate-middle-y d-none d-md-inline scroll-btn right-arrow" aria-label="Scroll right" type="button">›</button>
+
+        <div class="events-row" id="eventsRow" role="list" tabindex="0" aria-label="Upcoming events scroll list">
+          <article class="event-card" role="listitem">
+            <img src="assets/img/flyer1.jpeg" alt="Great Awakening Crusade flyer">
+            <h5 class="mt-3">Great Awakening Crusade</h5>
+            <p class="text-muted mb-1">Oct 20, 2025 - Oct 23, 2025</p>
+            <p class="mb-0 small">Join us for a night of worship and prayer.</p>
+          </article>
+
+          <article class="event-card" role="listitem">
+            <img src="assets/img/flyer3.jpeg" alt="Friday Revival Service flyer">
+            <h5 class="mt-3">Friday Revival Service</h5>
+            <p class="text-muted mb-1">Nov 5, 2025</p>
+            <p class="mb-0 small">Empowering the next generation in Christ.</p>
+          </article>
+
+          <article class="event-card" role="listitem">
+            <img src="assets/img/flyer2.jpeg" alt="Christmas Outreach flyer">
+            <h5 class="mt-3">Christmas Outreach</h5>
+            <p class="text-muted mb-1">Dec 24, 2025</p>
+            <p class="mb-0 small">Spreading love through giving and worship.</p>
+          </article>
+
+          <article class="event-card" role="listitem">
+            <img src="assets/img/flyer4.jpeg" alt="Outreach flyer">
+            <h5 class="mt-3">Christmas Outreach</h5>
+            <p class="text-muted mb-1">Dec 24, 2025</p>
+            <p class="mb-0 small">Spreading love through giving and worship.</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STAY CONNECTED / NEWSLETTER (desktop: writeup + form; mobile: CTA) -->
+  <section class="spiritual-section py-5">
+    <div class="container">
+      <div class="row justify-content-center text-center mb-4">
+        <div class="col-lg-8">
+          <h2 class="display-6 fw-bold text-uppercase spiritual-heading">Stay Connected with Mega Harvest<br><small class="d-block text-uppercase" style="font-size:0.85rem; font-family:'Poppins',sans-serif;">Global Mission</small></h2>
+          <p class="lead mt-2 text-light">Follow our ministry for inspiring messages, updates, and resources to deepen your faith.</p>
+        </div>
+      </div>
+
+      <div class="row g-5 d-none d-md-flex align-items-center">
+        <div class="col-lg-6">
+          <i class="bi bi-cross feature-icon d-block mb-3" aria-hidden="true" style="font-size:36px; color:var(--gold);"></i>
+          <h3 class="fw-bold text-uppercase mb-3" style="font-family:'Oswald',sans-serif;">Join Our Faith Family</h3>
+          <p class="text-light">At Mega Harvest Global Mission, we believe in the power of community and shared faith. When you join our newsletter, you're not just getting updates—you're becoming part of a family united in Christ's purpose.</p>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="spiritual-card">
+            <div class="spiritual-card-header text-center">
+              <h4 class="fw-bold mb-1">Join Our Community</h4>
+              <p class="mb-0 small opacity-75">Sign up to receive blessings in your inbox</p>
+            </div>
+
+            <div class="card-body p-4 p-md-5">
+              <form id="newsletterForm" novalidate>
+                <div class="mb-3">
+                  <label for="fullname" class="form-label fw-semibold">Full Name</label>
+                  <div class="input-group input-group-lg">
+                    <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
+                    <input type="text" id="fullname" name="fullname" class="form-control" placeholder="Your Full Name" required>
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label for="email" class="form-label fw-semibold">Email Address</label>
+                  <div class="input-group input-group-lg">
+                    <span class="input-group-text"><i class="bi bi-envelope-fill"></i></span>
+                    <input type="email" id="email" name="email" class="form-control" placeholder="Your Email" required>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-8 mb-3">
+                    <label for="address" class="form-label fw-semibold">Address</label>
+                    <div class="input-group input-group-lg">
+                      <span class="input-group-text"><i class="bi bi-geo-alt-fill"></i></span>
+                      <input type="text" id="address" name="address" class="form-control" placeholder="Your Address">
+                    </div>
+                  </div>
+
+                  <div class="col-md-4 mb-3">
+                    <label for="postal" class="form-label fw-semibold">Postal Code</label>
+                    <div class="input-group input-group-lg">
+                      <span class="input-group-text"><i class="bi bi-mailbox"></i></span>
+                      <input type="text" id="postal" name="postal" class="form-control" placeholder="Postal Code">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-check mb-4">
+                  <input class="form-check-input" type="checkbox" id="prayerRequest" name="prayerRequest">
+                  <label class="form-check-label small text-muted" for="prayerRequest">I would like to receive prayer support</label>
+                </div>
+
+                <button type="submit" class="btn spiritual-btn btn-lg w-100 py-3 fw-bold">
+                  <i class="bi bi-send-fill me-2"></i> Subscribe to Blessings
+                </button>
+                <p class="small text-muted text-center mt-3 mb-0">We respect your privacy and will never share your information</p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- mobile CTA -->
+      <div class="text-center d-md-none">
+        <a href="/newsletter.html" class="btn mobile-btn mt-4">
+          <i class="bi bi-envelope-fill me-2"></i> Join Our Faith Community
+        </a>
+        <p class="small text-light mt-3">Stay connected with our ministry and receive spiritual encouragement</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOOKS IMAGE -->
+  <section class="py-0">
+    <div class="container-fluid px-0">
+      <img src="assets/img/books.jpeg" alt="Mega Harvest Publications" class="img-fluid w-100" style="max-height:560px; object-fit:cover;">
+    </div>
+  </section>
+
+  <!-- FEATURES (3 blocks) -->
+  <section class="py-5" style="background-color:#f6f6f6;">
+    <div class="container">
+      <div class="row justify-content-center gx-5">
+        <div class="col-12 col-md-6 col-lg-4 mb-4 d-flex">
+          <div class="text-center p-4 w-100">
+            <div class="mb-3 mx-auto" style="max-width:240px;">
+              <img src="assets/img/power3.jpeg" alt="Travel Itinerary" class="img-fluid rounded" style="width:100%; height:260px; object-fit:cover;">
+            </div>
+            <h5 class="fw-bold text-uppercase" style="font-family:'Oswald',sans-serif;">Travel Schedule</h5>
+            <p style="font-family:'Poppins',sans-serif; font-size:0.95rem;">Stay updated with our upcoming missions, crusades, and revival meetings.</p>
+            <a href="/itinerary" class="btn btn-outline-primary mt-3 text-uppercase">View Schedule</a>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4 mb-4 d-flex">
+          <div class="text-center p-4 w-100">
+            <div class="mb-3 mx-auto" style="max-width:240px;">
+              <img src="assets/img/couples2.jpeg" alt="Partnership" class="img-fluid rounded" style="width:100%; height:260px; object-fit:cover;">
+            </div>
+            <h5 class="fw-bold text-uppercase" style="font-family:'Oswald',sans-serif;">Partnership</h5>
+            <p style="font-family:'Poppins',sans-serif; font-size:0.95rem;">Join us in advancing the Gospel. Your monthly support makes a lasting impact.</p>
+            <a href="/partnership" class="btn btn-outline-primary mt-3 text-uppercase">Become a Partner</a>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4 mb-4 d-flex">
+          <div class="text-center p-4 w-100">
+            <div class="mb-3 mx-auto" style="max-width:240px;">
+              <img src="assets/img/books.jpeg" alt="Publications" class="img-fluid rounded" style="width:100%; height:260px; object-fit:cover;">
+            </div>
+            <h5 class="fw-bold text-uppercase" style="font-family:'Oswald',sans-serif;">Publications</h5>
+            <p style="font-family:'Poppins',sans-serif; font-size:0.95rem;">Explore our books, study manuals, and ministry resources to build your faith.</p>
+            <a href="/publications" class="btn btn-outline-primary mt-3 text-uppercase">Shop Resources</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT (image + box overlapping) -->
+  <section class="about-section py-5" style="background-color:#f7f7f6;">
+    <div class="container">
+      <div class="row justify-content-center align-items-center" style="min-height:60vh;">
+        <div class="col-12 col-lg-5 text-center">
+          <img src="assets/img/couples3.jpeg" alt="Joseph & Mariah Achanya" class="img-fluid rounded shadow" style="width:100%; height:auto; object-fit:cover;">
+        </div>
+
+        <div class="col-12 col-lg-4">
+          <div class="bg-white shadow-lg rounded p-4 p-md-5 ms-lg-n3" style="z-index:2;">
+            <h3 class="fw-bold mb-2 text-uppercase" style="font-family:'Oswald',sans-serif; font-size:1.15rem;">
+              Joseph &amp; Mariah Achanya
+              <br>
+              <small class="text-muted d-block" style="font-size:0.78rem; font-family:'Poppins',sans-serif;">Evangelists</small>
+            </h3>
+
+            <p style="font-family:'Poppins',sans-serif; color:#333;">Joseph and Mariah Achanya are Evangelists devoted to winning souls, reviving the church, and equipping believers to walk in the fullness of Christ. They have ministered across nations, bringing revival and salvation to this generation.</p>
+
+            <div class="text-center mt-3">
+              <a href="/about" class="btn btn-warning text-dark fw-bold px-4 text-uppercase">About Us</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARTNER HERO (with counters restored) -->
+  <section class="partner-hero d-flex align-items-center position-relative overflow-hidden" style="background: linear-gradient(0deg, rgba(9,10,15,0.55), rgba(9,10,15,0.55)), url('assets/img/partner-bg.jpg') center/cover no-repeat;">
+    <div class="container position-relative" style="z-index:2;">
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-10 col-lg-8 text-center">
+          <span class="badge px-4 py-2 fw-bold mb-3" style="background: rgba(212,175,55,0.1); color:#d4af37; border:1px solid rgba(212,175,55,0.12);">JOIN THE GLOBAL HARVEST</span>
+
+          <h1 class="fw-bold mb-3 text-uppercase" style="font-family:'Oswald',sans-serif; letter-spacing:2px;">Kingdom Legacy Partner</h1>
+
+          <p class="lead mb-4" style="font-family:'Poppins',sans-serif; color:#efefef;">At Mega Harvest Global Mission we invest in eternal fruit through faithful partnership. Kingdom Legacy Partners are co-laborers who sow into gospel outreach, revival crusades, discipleship training, and practical care for communities in need. Join us and leave a Kingdom legacy that endures.</p>
+
+          <div class="d-flex justify-content-center gap-3">
+            <a href="/partnership" class="btn btn-lg fw-bold" style="background:#d4af37; color:#111; border:none; text-transform:uppercase; padding:0.9rem 2rem;">Become a Partner</a>
+          </div>
+
+          <div class="row mt-4 pt-3 justify-content-center">
+            <div class="col-6 col-md-4 text-center">
+              <h4 class="fw-bold counter stat-number" data-target="150000" data-suffix="+">0</h4>
+              <p class="stat-label">Souls Saved</p>
+            </div>
+            <div class="col-6 col-md-4 text-center">
+              <h4 class="fw-bold counter stat-number" data-target="9" data-suffix="+">0</h4>
+              <p class="stat-label">Nations Reached</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIES (compact) -->
+  <section class="testimonies-section py-4" style="background: linear-gradient(135deg, #1a2f4d 0%, #15253d 100%); color: #fff;">
+    <div class="container">
+      <div class="row justify-content-center text-center mb-4">
+        <div class="col-lg-8">
+          <span class="badge px-3 py-1 fw-bold mb-2" style="background: rgba(86,171,47,0.15); color:#56ab2f; border:1px solid rgba(86,171,47,0.4); font-family:'Poppins',sans-serif; font-size:.7rem;">TRANSFORMED LIVES</span>
+          <h3 class="text-uppercase mb-2 fw-bold" style="font-family:'Oswald',sans-serif; font-size:1.8rem; letter-spacing:1px;">Stories of Hope</h3>
+          <p class="mb-4" style="color: rgba(255,255,255,0.8); font-family:'Poppins',sans-serif; font-size:0.95rem;">Witness the powerful transformations through Mega Harvest Global Mission</p>
+        </div>
+      </div>
+
+      <div class="row justify-content-center g-3">
+        <div class="col-md-6 col-lg-4">
+          <div class="testimony-card h-100">
+            <div class="testimony-content p-3">
+              <div class="d-flex align-items-center mb-2">
+                <div class="avatar-placeholder rounded-circle d-flex align-items-center justify-content-center me-2" style="width:40px; height:40px; background: rgba(86,171,47,0.2); color:#56ab2f; font-weight:bold; font-size:.75rem;">GO</div>
+                <div><h6 class="mb-0 fw-bold" style="color:#fff; font-family:'Oswald',sans-serif;">Grace Okon</h6><small style="color:rgba(255,255,255,0.6);">Lagos, Nigeria</small></div>
+              </div>
+              <p class="mb-0" style="font-family:'Poppins',sans-serif; font-size:.9rem; line-height:1.5; color:rgba(255,255,255,0.9);">"Through Mega Harvest, my family came to know Jesus. Our lives have never been the same."</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="testimony-card h-100">
+            <div class="testimony-content p-3">
+              <div class="d-flex align-items-center mb-2">
+                <div class="avatar-placeholder rounded-circle d-flex align-items-center justify-content-center me-2" style="width:40px; height:40px; background: rgba(86,171,47,0.2); color:#56ab2f; font-weight:bold; font-size:.75rem;">EJ</div>
+                <div><h6 class="mb-0 fw-bold" style="color:#fff; font-family:'Oswald', sans-serif;"> Emmanuel James</h6><small style="color:rgba(255,255,255,0.6);">Accra, Ghana</small></div>
+              </div>
+              <p class="mb-0" style="font-family:'Poppins',sans-serif; font-size:.9rem; line-height:1.5; color:rgba(255,255,255,0.9);">"Attending a revival meeting restored my hope. I experienced God's healing power."</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="testimony-card h-100">
+            <div class="testimony-content p-3">
+              <div class="d-flex align-items-center mb-2">
+                <div class="avatar-placeholder rounded-circle d-flex align-items-center justify-content-center me-2" style="width:40px; height:40px; background: rgba(86,171,47,0.2); color:#56ab2f; font-weight:bold; font-size:.75rem;">DM</div>
+                <div><h6 class="mb-0 fw-bold" style="color:#fff; font-family:'Oswald',sans-serif;">Deborah Musa</h6><small style="color:rgba(255,255,255,0.6);">Nairobi, Kenya</small></div>
+              </div>
+              <p class="mb-0" style="font-family:'Poppins',sans-serif; font-size:.9rem; line-height:1.5; color:rgba(255,255,255,0.9);">"I was trained through Mega Harvest's program. Now I lead a growing fellowship in my community."</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row justify-content-center mt-4">
+        <div class="col-lg-8 text-center">
+          <p class="mb-3" style="color: rgba(255,255,255,0.7); font-family:'Poppins',sans-serif; font-size:0.9rem;">Read more inspiring stories of transformation</p>
+          <a href="/testimonies" class="btn fw-bold px-4 py-2" style="background: linear-gradient(135deg, #56ab2f 0%, #4a9c25 100%); border: none; color: #fff; font-size:0.85rem;">View All Testimonies</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOCIAL -->
+  <section class="py-5" style="background: linear-gradient(135deg, #f7f9fc 0%, #e8edf5 100%);">
+    <div class="container text-center">
+      <h2 class="fw-bold mb-3 display-5" style="font-family: 'Oswald', sans-serif; color: #15253d; letter-spacing: 0.5px;">JOIN OUR DIGITAL MISSION</h2>
+      <div class="mb-4 mx-auto" style="width: 80px; height: 3px; background: linear-gradient(90deg, #d4af37, #15253d); border-radius: 3px;"></div>
+      <p class="mb-5 mx-auto" style="color: #555; font-family: 'Poppins', sans-serif; font-size: 1.1rem; max-width: 600px;">Follow our journey across platforms. Get daily inspiration, watch live services, and join our mission to share the Gospel worldwide.</p>
+
+      <div class="row justify-content-center g-4">
+        <div class="col-6 col-md-4 col-lg-3">
+          <a href="https://facebook.com" target="_blank" rel="noopener" class="social-card facebook-card" aria-label="Mega Harvest on Facebook">
+            <div class="social-icon-container"><i class="bi bi-facebook"></i><div class="icon-pulse"></div></div>
+            <div class="social-platform">Facebook</div>
+            <div class="social-followers">Join 15K+ followers</div>
+            <div class="social-cta">Follow Community <i class="bi bi-arrow-right"></i></div>
+          </a>
+        </div>
+
+        <div class="col-6 col-md-4 col-lg-3">
+          <a href="https://instagram.com" target="_blank" rel="noopener" class="social-card instagram-card" aria-label="Mega Harvest on Instagram">
+            <div class="social-icon-container"><i class="bi bi-instagram"></i><div class="icon-pulse"></div></div>
+            <div class="social-platform">Instagram</div>
+            <div class="social-followers">12K+ followers</div>
+            <div class="social-cta">See Stories <i class="bi bi-arrow-right"></i></div>
+          </a>
+        </div>
+
+        <div class="col-6 col-md-4 col-lg-3">
+          <a href="https://twitter.com" target="_blank" rel="noopener" class="social-card twitter-card" aria-label="Mega Harvest on Twitter">
+            <div class="social-icon-container"><i class="bi bi-twitter"></i><div class="icon-pulse"></div></div>
+            <div class="social-platform">Twitter</div>
+            <div class="social-followers">8K+ followers</div>
+            <div class="social-cta">Join Conversation <i class="bi bi-arrow-right"></i></div>
+          </a>
+        </div>
+
+        <div class="col-6 col-md-4 col-lg-3">
+          <a href="https://tiktok.com" target="_blank" rel="noopener" class="social-card tiktok-card" aria-label="Mega Harvest on TikTok">
+            <div class="social-icon-container"><i class="bi bi-tiktok"></i><div class="icon-pulse"></div></div>
+            <div class="social-platform">TikTok</div>
+            <div class="social-followers">25K+ followers</div>
+            <div class="social-cta">Watch Videos <i class="bi bi-arrow-right"></i></div>
+          </a>
+        </div>
+      </div>
+
+      <div class="mt-5 pt-3">
+        <p class="small text-muted mb-2" style="font-family: 'Poppins', sans-serif;">FOLLOW US EVERYWHERE</p>
+        <div class="d-flex justify-content-center gap-3">
+          <a href="#" class="text-decoration-none" style="color: #15253d; font-family: 'Poppins', sans-serif; font-weight: 500;"><i class="bi bi-link me-1"></i> Link all profiles</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="py-4" style="background:#0d1b2b; color:#cbd5e1;">
+    <div class="container text-center">
+      <p class="mb-1 small">© <span id="year"></span> Mega Harvest Global Mission</p>
+      <p class="small mb-0">All rights reserved — Reaching souls for Christ.</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // Copyright year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Typewriter (kept, non-critical)
+    (function typewriter(){
+      const el = document.querySelector('.typed-text');
+      if(!el) return;
+      const texts = ["On the frontline of global evangelism", "Reaching nations with the Gospel", "Training believers worldwide", "Expanding God's Kingdom together"];
+      let i=0, j=0, deleting=false;
+      function tick(){
+        const current = texts[i];
+        el.textContent = deleting ? current.slice(0, j--) : current.slice(0, j++);
+        if(!deleting && j===current.length+1){ deleting=true; setTimeout(tick,2000); return; }
+        if(deleting && j===0){ deleting=false; i=(i+1)%texts.length; setTimeout(tick,500); return; }
+        setTimeout(tick, deleting ? 30 : 50);
+      }
+      setTimeout(tick,800);
+    })();
+
+    // COUNTERS — restored and animate when in view
+    (function counters(){
+      const counters = document.querySelectorAll('.counter');
+      if(!counters.length) return;
+      const animate = (el) => {
+        const target = +el.dataset.target || 0;
+        const suffix = el.dataset.suffix || '';
+        let current = 0;
+        const step = Math.max(1, Math.round(target / 600));
+        const run = () => {
+          current += step;
+          if(current < target){
+            el.textContent = current.toLocaleString() + suffix;
+            requestAnimationFrame(run);
+          } else {
+            el.textContent = target.toLocaleString() + suffix;
+          }
+        };
+        run();
+      };
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if(e.isIntersecting){ animate(e.target); observer.unobserve(e.target); }
+        });
+      }, { threshold: 0.5 });
+      counters.forEach(c => observer.observe(c));
+    })();
+
+    // Parallax minor effect for partner hero
+    (function parallaxHero(){
+      const hero = document.querySelector('.partner-hero');
+      if(!hero) return;
+      window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        hero.style.backgroundPosition = `center ${Math.max(-120, -scrolled * 0.12)}px`;
+      });
+    })();
+
+    // Draggable scroll for events-row (mouse + touch)
+    (function dragScroll(){
+      const slider = document.getElementById('eventsRow');
+      if(!slider) return;
+      let isDown=false, startX, scrollLeft;
+      slider.addEventListener('mousedown', e => { isDown=true; slider.classList.add('active'); startX = e.pageX - slider.offsetLeft; scrollLeft = slider.scrollLeft; });
+      slider.addEventListener('mouseleave', ()=>{ isDown=false; slider.classList.remove('active'); });
+      slider.addEventListener('mouseup', ()=>{ isDown=false; slider.classList.remove('active'); });
+      slider.addEventListener('mousemove', e => {
+        if(!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - slider.offsetLeft;
+        const walk = (x - startX) * 1.6;
+        slider.scrollLeft = scrollLeft - walk;
+      });
+      // touch support
+      let touchStartX=0, touchScrollLeft=0;
+      slider.addEventListener('touchstart', e => { touchStartX = e.touches[0].pageX; touchScrollLeft = slider.scrollLeft; }, {passive:true});
+      slider.addEventListener('touchmove', e => {
+        const x = e.touches[0].pageX;
+        const walk = (x - touchStartX) * 1.4;
+        slider.scrollLeft = touchScrollLeft - walk;
+      }, {passive:true});
+      // arrows
+      const leftBtn = document.querySelector('.left-arrow');
+      const rightBtn = document.querySelector('.right-arrow');
+      if(leftBtn) leftBtn.addEventListener('click', ()=> slider.scrollBy({ left: -400, behavior: 'smooth' }));
+      if(rightBtn) rightBtn.addEventListener('click', ()=> slider.scrollBy({ left: 400, behavior: 'smooth' }));
+    })();
+
+    // Navbar shrink on scroll
+    (function navShrink(){
+      const nav = document.querySelector('.mega-navbar');
+      if(!nav) return;
+      function check(){ if(window.scrollY>40) nav.classList.add('scrolled'); else nav.classList.remove('scrolled'); }
+      check();
+      window.addEventListener('scroll', check);
+    })();
+
+    // Basic visual ripple animations for CTA buttons (non-critical)
+    (function ripple(){
+      document.querySelectorAll('.animated-button').forEach(btn=>{
+        btn.addEventListener('mouseenter', (e)=>{
+          const rect = btn.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          const ripple = document.createElement('span');
+          ripple.style.position='absolute';
+          ripple.style.left = `${x}px`; ripple.style.top = `${y}px`;
+          ripple.style.width='80px'; ripple.style.height='80px';
+          ripple.style.background='rgba(255,255,255,0.24)';
+          ripple.style.borderRadius='50%'; ripple.style.transform='translate(-50%,-50%)';
+          ripple.style.pointerEvents='none'; ripple.style.opacity='1';
+          ripple.style.transition='opacity .6s, transform .6s';
+          btn.appendChild(ripple);
+          setTimeout(()=>{ ripple.style.opacity='0'; ripple.style.transform='translate(-50%,-50%) scale(2)'; }, 10);
+          setTimeout(()=> ripple.remove(), 700);
+        });
+      });
+    })();
+
+    // Newsletter form basic validation (client only)
+    (function newsletterForm(){
+      const form = document.getElementById('newsletterForm');
+      if(!form) return;
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        const email = form.querySelector('input[type="email"]');
+        if(!email.value || !/^\S+@\S+\.\S+$/.test(email.value)){
+          email.focus();
+          email.classList.add('is-invalid');
+          setTimeout(()=> email.classList.remove('is-invalid'), 2500);
+          return;
+        }
+        const submitBtn = form.querySelector('button[type="submit"]');
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Subscribing...';
+        setTimeout(()=> {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = '<i class="bi bi-send-fill me-2"></i> Subscribe to Blessings';
+          alert('Thanks — you are subscribed (demo). Connect this to your mail provider to complete process.');
+          form.reset();
+        }, 1200);
+      });
+    })();
+  });
+  </script>
+
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white py-4 text-center">
+    <p>© 2025 Mega Harvest Global Mission. All rights reserved.</p>
+  </footer>
+
+   <!-- Vendor JS Files -->
+  <script src="<?= $server_name ?>/assets/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="<?= $server_name ?>/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="<?= $server_name ?>/assets/vendor/chart.js/chart.umd.js"></script>
+  <script src="<?= $server_name ?>/assets/vendor/echarts/echarts.min.js"></script>
+  <script src="<?= $server_name ?>/assets/vendor/quill/quill.js"></script>
+  <script src="<?= $server_name ?>/assets/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="<?= $server_name ?>/assets/vendor/tinymce/tinymce.min.js"></script>
+  <script src="<?= $server_name ?>/assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="<?= $server_name ?>/assets/js/main.js"></script>
+
+</body>
+</html>
+

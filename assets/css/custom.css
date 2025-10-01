@@ -1,0 +1,134 @@
+/* ========== VARIABLES & RESET ========== */
+:root{
+  --nav-dark-1: #0e1724;
+  --nav-dark-2: #1a2f4d;
+  --gold: #d4af37;
+  --gold-dark: #b8941f;
+  --accent-green: #56ab2f;
+  --bg-light: #f7f7f6;
+  --white: #ffffff;
+  --muted-white: rgba(255,255,255,0.85);
+  --card-border: rgba(86,171,47,0.15);
+}
+
+html,body{height:100%;}
+
+/* ===== TYPOGRAPHY ===== */
+body { font-family: "Poppins", sans-serif; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; color:#222; }
+h1,h2,h3,h4,h5,h6 { font-family: "Oswald", sans-serif; }
+
+/* ========== NAVBAR ========== */
+.mega-navbar{
+  background: linear-gradient(135deg, var(--nav-dark-2) 0%, var(--nav-dark-1) 100%) !important;
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid rgba(212,175,55,0.12);
+  padding: 0.7rem 0;
+  transition: all .25s ease;
+}
+.mega-navbar.scrolled{ background: rgba(14,23,36,0.95) !important; padding:0.45rem 0; box-shadow:0 6px 22px rgba(0,0,0,0.35); }
+.brand-text{ color: var(--gold); letter-spacing:1.6px; font-weight:700; }
+.brand-subtitle{ font-size:0.75rem; color:rgba(255,255,255,0.75); font-family: "Poppins",sans-serif; letter-spacing:1.6px; text-transform:uppercase; }
+.navbar-nav .nav-link{ color:rgba(255,255,255,0.95) !important; font-weight:500; margin:0 0.35rem; padding:0.45rem 0.85rem !important; border-radius:6px; }
+.navbar-nav .nav-link:hover{ color:var(--gold) !important; background: rgba(212,175,55,0.06); transform:translateY(-1px); }
+.navbar-nav .nav-link::after{ content:''; position:absolute; bottom:0; left:50%; width:0; height:2px; background:var(--gold); transform:translateX(-50%); transition:all .25s ease; }
+.navbar-nav .nav-link:hover::after{ width:70%; }
+
+.give-btn{ background: linear-gradient(135deg,var(--gold) 0%, var(--gold-dark) 100%) !important; color:#111 !important; border-radius:25px !important; padding:.45rem 1.4rem !important; box-shadow:0 6px 18px rgba(212,175,55,0.22) !important; font-weight:600 !important; border:none !important; }
+
+/* ========== HERO ========== */
+.hero-section{ position:relative; overflow:hidden; display:block; }
+.hero-section .container{ padding-top:6rem; padding-bottom:6rem; }
+.hero-section h1{ font-family:'Oswald',sans-serif; font-weight:800; letter-spacing:1px; font-size:2.25rem; }
+.hero-section p.lead{ font-family:'Poppins',sans-serif; font-weight:600; color:var(--muted-white); }
+.hero-section .btn{ box-shadow:0 6px 20px rgba(0,0,0,0.2); }
+
+/* ========== SOULS SECTION ========== */
+.soul-section{ min-height:70vh; overflow:hidden; }
+.row-full-height{ height:100%; min-height:70vh; display:flex; flex-wrap:wrap; }
+.left-column{ display:flex; flex-direction:column; justify-content:center; align-items:center; padding:2rem; background:#faf9f6; text-align:center; }
+.right-column{ position:relative; height:100%; min-height:50vh; }
+.soul-image{ width:100%; height:100%; object-fit:cover; display:block; }
+.soul-heading{ font-family:'Oswald',sans-serif; font-weight:800; font-size:clamp(1.8rem,4.2vw,4.5rem); text-transform:uppercase; line-height:0.95; margin-bottom:1rem; letter-spacing:1px; }
+.souls-accent{ color:var(--gold); text-shadow:2px 2px 6px rgba(0,0,0,0.08); }
+
+/* soul-links */
+.soul-links{ margin-top:1rem; max-width:460px; width:100%; }
+.soul-links li{ list-style:none; border-top:1px solid rgba(0,0,0,0.12); padding:12px 0; }
+.soul-links li:last-child{ border-bottom:1px solid rgba(0,0,0,0.12); }
+.soul-links a{ display:flex; align-items:center; justify-content:space-between; color:#111; font-weight:600; text-decoration:none; padding-right:8px; transition:all .22s ease; }
+.soul-links a .arrow{ transition:transform .22s ease; }
+.soul-links a:hover .arrow{ transform:translateX(6px); color:var(--gold); }
+
+/* ========== EVENTS SECTION ========== */
+.events-section{ background:#fafafa; padding:2.4rem 0; }
+.events-wrapper{ position:relative; overflow:hidden; }
+.events-row{ display:flex; gap:1rem; padding-bottom:1rem; overflow-x:auto; scroll-behavior:smooth; cursor:grab; user-select:none; -webkit-overflow-scrolling:touch; }
+.events-row:active{ cursor:grabbing; }
+.events-row::-webkit-scrollbar{ display:none; }
+.events-row{ -ms-overflow-style:none; scrollbar-width:none; }
+.event-card{ flex:0 0 auto; width:clamp(260px,30vw,380px); border-radius:12px; background:#fff; padding:1rem; box-shadow:0 6px 18px rgba(0,0,0,0.06); text-align:left; }
+.event-card img{ width:100%; height:180px; object-fit:cover; border-radius:8px; }
+
+/* scroll arrow buttons */
+.scroll-btn{ width:44px; height:44px; border-radius:8px; display:flex; align-items:center; justify-content:center; }
+
+/* ========== SPIRITUAL / NEWSLETTER ========== */
+.spiritual-section{ position:relative; overflow:hidden; background:linear-gradient(135deg,#1a4a8a 0%, #2bb6b0 100%); color:#fff; padding:3.25rem 0; }
+.spiritual-section .feature-icon{ width:64px; height:64px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.6rem; color:var(--gold); background: rgba(212,175,55,0.08); }
+.spiritual-card{ background:#fff; border-radius:12px; overflow:hidden; box-shadow:0 14px 40px rgba(0,0,0,0.18); }
+.spiritual-card-header{ padding:1.25rem; background:linear-gradient(135deg,var(--gold),#f0c84f); color:#111; text-align:center; }
+
+/* form */
+.input-group-text{ background:#f5f5f5; border:1px solid #e6e6e6; color:#1a4a8a; }
+.form-control{ border:1px solid #e6e6e6; background:rgba(255,255,255,0.98); }
+.form-control:focus{ border-color:var(--gold); box-shadow:0 0 0 0.25rem rgba(212,175,55,0.12); outline:none; }
+
+/* buttons */
+.spiritual-btn, .mobile-btn{ background:linear-gradient(135deg,var(--gold) 0%, #f0c84f 100%); color:#111; border:none; font-weight:700; border-radius:8px; }
+
+/* ========== FEATURES ========== */
+section.py-5[style]{ } /* preserve inline spacing where used */
+
+/* ========== ABOUT ========== */
+.about-section .bg-white{ box-shadow:0 14px 30px rgba(0,0,0,0.1); }
+
+/* ========== PARTNER HERO ========== */
+.partner-hero{ color:#fff; padding:3.5rem 0; background-size:cover; background-position:center; position:relative; }
+.partner-hero .badge{ background:rgba(212,175,55,0.08); color:var(--gold); border:1px solid rgba(212,175,55,0.12); }
+
+/* stats */
+.stat-number{ font-family:'Oswald',sans-serif; color:var(--gold); font-size:clamp(1.25rem,4vw,2rem); font-weight:700; }
+.stat-label{ color:rgba(255,255,255,0.85); font-family:'Poppins',sans-serif; }
+
+/* ========== TESTIMONIES ========== */
+.testimonies-section{ position:relative; }
+.testimony-card{ background:rgba(255,255,255,0.04); border-radius:10px; border:1px solid rgba(86,171,47,0.12); padding:1rem; transition:transform .22s ease, box-shadow .22s ease; }
+.testimony-card:hover{ transform:translateY(-6px); box-shadow:0 10px 30px rgba(0,0,0,0.15); }
+
+/* ========== SOCIAL CARDS ========== */
+.social-card{ display:block; background:#fff; border-radius:14px; padding:22px 18px; text-decoration:none; color:inherit; text-align:center; box-shadow:0 10px 30px rgba(0,0,0,0.06); transition:transform .28s cubic-bezier(.2,.9,.3,1), box-shadow .28s; height:220px; position:relative; overflow:hidden; }
+.social-card .social-icon-container{ width:60px; height:60px; margin:0 auto 10px; display:flex; align-items:center; justify-content:center; border-radius:50%; font-size:1.6rem; color:currentColor; position:relative; }
+.social-card .icon-pulse{ position:absolute; inset:0; border-radius:50%; opacity:.12; background:currentColor; animation:pulse 2s infinite; }
+.social-card:hover{ transform:translateY(-8px); box-shadow:0 18px 40px rgba(0,0,0,0.18); }
+.social-platform{ font-family:'Oswald',sans-serif; font-size:1.05rem; font-weight:600; margin-bottom:6px; }
+.social-followers{ font-family:'Poppins',sans-serif; font-size:0.85rem; color:#666; margin-bottom:10px; }
+.social-cta{ font-family:'Poppins',sans-serif; font-weight:600; color: #333; opacity:.95; transition:all .25s ease; }
+
+/* platform colors */
+.facebook-card{ color:#3b5998; border:1px solid rgba(59,89,152,0.08); }
+.instagram-card{ color:#d6249f; border:1px solid rgba(214,36,159,0.08); }
+.twitter-card{ color:#1da1f2; border:1px solid rgba(29,161,242,0.08); }
+.tiktok-card{ color:#000; border:1px solid rgba(0,0,0,0.06); }
+
+/* ========== ANIMATIONS ========= */
+@keyframes pulse{ 0%{ transform:scale(.92); opacity:.12 } 50%{ transform:scale(1.08); opacity:.08 } 100%{ transform:scale(.92); opacity:.12 } }
+
+/* ========== RESPONSIVE ========= */
+@media (max-width:767.98px){
+  .left-column, .right-column{ min-height:50vh; height:50vh; }
+  .navbar-nav{ text-align:center; padding:1rem 0; }
+  .navbar-nav .nav-link{ padding:.75rem 1rem !important; margin:0 !important; }
+  .give-btn{ width:100%; display:block; margin-top:.5rem; }
+  .social-card{ height:unset; padding:14px; }
+  .social-card .social-icon-container{ width:44px;height:44px;font-size:1.1rem; }
+}
